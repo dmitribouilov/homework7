@@ -1,8 +1,6 @@
 const axios = require("axios");
 
 var profileSummary = async function(username) {
-  //return "the username from API (SUM FUNCTION) is "+username;
-
   try {
     var y = await axios.get(`https://api.github.com/users/${username}`);
 
@@ -15,23 +13,29 @@ var profileSummary = async function(username) {
 };
 
 var profileFollowers = async function(username) {
-  //return "the username from API (SUM FUNCTION) is "+username;
+  try {
+    var y = await axios.get(
+      `https://api.github.com/users/${username}/followers`
+    );
 
-  var y = await axios.get(`https://api.github.com/users/${username}/followers`);
+    //console.log(y)
 
-  //console.log(y)
-
-  return y.data;
+    return y.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 var profileRepos = async function(username) {
-  //return "the username from API (SUM FUNCTION) is "+username;
+  try {
+    var y = await axios.get(`https://api.github.com/users/${username}/repos`);
 
-  var y = await axios.get(`https://api.github.com/users/${username}/repos`);
+    //console.log(y)
 
-  //console.log(y)
-
-  return y.data;
+    return y.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = {
